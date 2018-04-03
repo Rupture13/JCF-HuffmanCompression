@@ -25,6 +25,4 @@ public class HuffmanEncodedResult {
     public Node getHuffmanTree() {
         return huffmanTree;
     }
-    
-    
 }

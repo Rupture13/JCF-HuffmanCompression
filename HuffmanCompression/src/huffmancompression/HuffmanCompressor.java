@@ -16,10 +16,15 @@ import java.util.PriorityQueue;
 public class HuffmanCompressor {
     private static final int ALPHABET_SIZE = 256; //ASCII table
     
-    //Main two methods
+    //Main two methods: compress(...) and decompress(...)
     public HuffmanEncodedResult compress(String data) {
         int[] freq = buildFrequencyTable(data);
         Node huffmanTree = buildHuffmanTree(freq);
+        
+        //HashMap chosen because:
+        //• Needs key-value structure
+        //• Does not need to be sorted
+        //• O(1)
         Map<Character, String> lookupTable = buildLookupTable(huffmanTree);
         
         return new HuffmanEncodedResult(generateEncodedData(data, lookupTable), huffmanTree);
@@ -29,7 +34,7 @@ public class HuffmanCompressor {
         StringBuilder sb = new StringBuilder();
         Node current = result.getHuffmanTree();
         int i = 0;
-        while (i < result.getEncodedData().length()) {            
+        while (i < result.getEncodedData().length()) { //O(n)           
             while (!current.isLeaf()) {                
                 char bit = result.getEncodedData().charAt(i);
                 if (bit == '1') {
@@ -50,16 +55,20 @@ public class HuffmanCompressor {
     
     private int[] buildFrequencyTable(String data) {
         int[] freq = new int[ALPHABET_SIZE];
-        for (char c : data.toCharArray()) {
+        for (char c : data.toCharArray()) {     //O(n)
             freq[c]++;  //Char als index gebruiken kan
         }
         return freq;
     }
     
     private Node buildHuffmanTree(int[] freq) {
+        //PriorityQueue chosen because:
+        //• Desired sorting
+        //• size O(1)
+        //• poll O(log(n))
         PriorityQueue<Node> queue = new PriorityQueue<>();
         
-        for (char i = 0; i < ALPHABET_SIZE; i++) {
+        for (char i = 0; i < ALPHABET_SIZE; i++) { //O(n)
             if (freq[i] > 0) {
                 queue.add(new Node(i, freq[i], null, null));
             }
@@ -80,6 +89,11 @@ public class HuffmanCompressor {
     }
     
     private Map<Character, String> buildLookupTable(Node huffmanTree) {
+        //As mentioned above...
+        //HashMap chosen because:
+        //• Needs key-value structure
+        //• Does not need to be sorted
+        //• O(1)
         Map<Character, String> lookupTable = new HashMap<>();
         buildLookupTableSubPart(huffmanTree, "", lookupTable);
         return lookupTable;

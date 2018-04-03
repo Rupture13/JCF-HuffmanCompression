@@ -12,7 +12,6 @@ package huffmancompression;
 public class MainClass {
     static Facade huffmanCompressor;
     static final String INPUT_TEXT = "huffman input text to be compressed";
-//    static final String INPUT_TEXT = "aaaaaaaaaa";
     
     /**
      * @param args the command line arguments

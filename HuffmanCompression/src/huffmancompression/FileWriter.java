@@ -57,7 +57,7 @@ public class FileWriter {
             
             StringBuilder sb = new StringBuilder();
             for (int i = 0; i < length; i++) {
-                if (bits.get(i)) {
+                if (bits.get(i)) { // O(1)
                     sb.append("1");
                 }
                 else {
@@ -82,10 +82,10 @@ public class FileWriter {
         for (int i = 0; i < encoded.length(); i++) {
             Character c = encoded.charAt(i);
             if (c == '1') {
-                b.set(i, true);
+                b.set(i, true); //O(1)
             }
             else if (c == '0') {
-                b.set(i, false);
+                b.set(i, false); //O(1)
             }
             else {
                 throw new IllegalArgumentException("Invalid character: " + c);
