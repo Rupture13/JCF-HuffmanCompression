@@ -10,5 +10,11 @@ package huffmancompression;
  * @author Rupture13
  */
 class HuffmanEncodedResult {
-    
+    String encodedData;
+    Node huffmanTree;
+
+    public HuffmanEncodedResult(String encodedData, Node huffmanTree) {
+        this.encodedData = encodedData;
+        this.huffmanTree = huffmanTree;
+    }
 }
