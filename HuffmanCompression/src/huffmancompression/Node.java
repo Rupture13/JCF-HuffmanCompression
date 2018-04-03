@@ -5,11 +5,13 @@
  */
 package huffmancompression;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Rupture13
  */
-public class Node implements Comparable<Node> {
+public class Node implements Comparable<Node>, Serializable {
     private char c;
     private int frequency;
     private Node leftChild;

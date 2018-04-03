@@ -25,4 +25,20 @@ public class Facade {
     public String decompressData(HuffmanEncodedResult result) {
         return hf.decompress(result);
     }
+    
+    public void save(HuffmanEncodedResult her) {
+        fw.save(her);
+    }
+    
+    public void load() {
+        fw.load();
+    }
+    
+    public Node getHuffmanTree() {
+        return fw.getHuffmanTree();
+    }
+    
+    public String getMessage() {
+        return fw.getMessage();
+    }
 }

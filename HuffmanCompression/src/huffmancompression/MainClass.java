@@ -25,8 +25,18 @@ public class MainClass {
         System.out.println(INPUT_TEXT);
         System.out.println("\nEncoded input:");
         result = huffmanCompressor.compressData(INPUT_TEXT);
+        
+        System.out.println("\nSaved:");
         System.out.println(result.getEncodedData());
+        
+        huffmanCompressor.save(result);
+        
+        huffmanCompressor.load();
+        HuffmanEncodedResult loaded = new HuffmanEncodedResult(huffmanCompressor.getMessage(), huffmanCompressor.getHuffmanTree());
+        
+        System.out.println("\nLoaded again:");
+        System.out.println(loaded.getEncodedData());
         System.out.println("\nDecoded again:");
-        System.out.println(huffmanCompressor.decompressData(result));
+        System.out.println(huffmanCompressor.decompressData(loaded));
     }
 }
