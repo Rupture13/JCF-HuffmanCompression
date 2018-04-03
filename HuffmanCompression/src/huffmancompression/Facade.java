@@ -9,14 +9,14 @@ package huffmancompression;
  *
  * @author Rupture13
  */
-public class MainClass {
+public class Facade {
+    HuffmanCompressor hf;
+    FileWriter fw;
 
-    Facade huffmanCompressor;
-    
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        System.out.println("Test");
+    public Facade() {
+        hf = new HuffmanCompressor();
+        fw = new FileWriter();
     }
+    
+    
 }
