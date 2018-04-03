@@ -2,5 +2,5 @@ projectKey=my:HuffmanCompression
 serverUrl=http://localhost:9000
 serverVersion=6.7.0.33306
 dashboardUrl=http://localhost:9000/dashboard/index/my:HuffmanCompression
-ceTaskId=AWKKpDjVOp6pM6tXCOme
-ceTaskUrl=http://localhost:9000/api/ce/task?id=AWKKpDjVOp6pM6tXCOme
+ceTaskId=AWKKpj_nOp6pM6tXCOmf
+ceTaskUrl=http://localhost:9000/api/ce/task?id=AWKKpj_nOp6pM6tXCOmf
