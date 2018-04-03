@@ -5,6 +5,13 @@
  */
 package huffmancompression;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author Rupture13
@@ -41,4 +48,22 @@ public class Facade {
     public String getMessage() {
         return fw.getMessage();
     }
+    
+    public String readInputFromFile(boolean large) { 
+        String path; 
+        if (large) { 
+            path = System.getProperty("user.dir") + File.separator + "input1000000.txt"; 
+        } 
+        else { 
+            path = System.getProperty("user.dir") + File.separator + "input10000.txt"; 
+        } 
+        String content = "test test"; 
+         try { 
+            content = new String(Files.readAllBytes(Paths.get(path))); 
+        } catch (IOException e) { 
+            Logger.getGlobal().log(Level.SEVERE, "Reading files failed."); 
+            return "nothing"; 
+        } 
+         return content; 
+    } 
 }
