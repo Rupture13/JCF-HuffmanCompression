@@ -9,11 +9,11 @@ package huffmancompression;
  *
  * @author Rupture13
  */
-class Node implements Comparable<Node> {
-    char c;
-    int frequency;
-    Node leftChild;
-    Node rightChild;
+public class Node implements Comparable<Node> {
+    private char c;
+    private int frequency;
+    private Node leftChild;
+    private Node rightChild;
 
     public Node(char c, int frequency, Node leftChild, Node rightChild) {
         this.c = c;
@@ -22,7 +22,7 @@ class Node implements Comparable<Node> {
         this.rightChild = rightChild;
     }
 
-    public char getC() {
+    public char getCharacter() {
         return c;
     }
 

@@ -26,7 +26,26 @@ public class HuffmanCompressor {
     }
     
     public String decompress(HuffmanEncodedResult result) {
-        return null;
+        StringBuilder sb = new StringBuilder();
+        Node current = result.getHuffmanTree();
+        int i = 0;
+        while (i < result.getEncodedData().length()) {            
+            while (!current.isLeaf()) {                
+                char bit = result.getEncodedData().charAt(i);
+                if (bit == '1') {
+                    current = current.getRightChild();
+                } else if (bit == '0') {
+                    current = current.getLeftChild();
+                } else {
+                    throw new IllegalArgumentException("Invalid bit in message: " + bit);
+                }
+                i++;
+            }
+            sb.append(current.getCharacter());
+            current = result.getHuffmanTree();
+        }
+        
+        return sb.toString();
     }
     
     private int[] buildFrequencyTable(String data) {
@@ -41,21 +60,19 @@ public class HuffmanCompressor {
         PriorityQueue<Node> queue = new PriorityQueue<>();
         
         for (char i = 0; i < ALPHABET_SIZE; i++) {
-            if (freq[i] == 1) {
-                queue.add(new Node('\0', 1, null, null));
-            }
-            else if (freq[i] > 1) {
+            if (freq[i] > 0) {
                 queue.add(new Node(i, freq[i], null, null));
             }
-            else {
-                
-            }
+        }
+        
+        if (queue.size() == 1) {
+           queue.add(new Node('\0', 1, null, null));
         }
         
         while (queue.size() > 1) {            
             Node left = queue.poll();
             Node right = queue.poll();
-            Node parent = new Node('\0', (left.frequency + right.frequency), left, right);
+            Node parent = new Node('\0', (left.getFrequency() + right.getFrequency()), left, right);
             queue.add(parent);
         }
         
@@ -69,11 +86,11 @@ public class HuffmanCompressor {
     }
     
     private void buildLookupTableSubPart(Node n, String s, Map<Character, String> table) {
-        if (n.isLeaf()) {
-            buildLookupTableSubPart(n.leftChild, s + '0', table);
-            buildLookupTableSubPart(n.rightChild, s + '1', table);
+        if (!n.isLeaf()) {
+            buildLookupTableSubPart(n.getLeftChild(), s + '0', table);
+            buildLookupTableSubPart(n.getRightChild(), s + '1', table);
         } else {
-            table.put(n.c, s);
+            table.put(n.getCharacter(), s);
         }
     }
     

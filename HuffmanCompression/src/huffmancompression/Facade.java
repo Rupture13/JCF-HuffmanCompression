@@ -10,13 +10,19 @@ package huffmancompression;
  * @author Rupture13
  */
 public class Facade {
-    HuffmanCompressor hf;
-    FileWriter fw;
+    private HuffmanCompressor hf;
+    private FileWriter fw;
 
     public Facade() {
         hf = new HuffmanCompressor();
         fw = new FileWriter();
     }
     
+    public HuffmanEncodedResult compressData(String input) {
+        return hf.compress(input);
+    }
     
+    public String decompressData(HuffmanEncodedResult result) {
+        return hf.decompress(result);
+    }
 }

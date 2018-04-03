@@ -10,13 +10,23 @@ package huffmancompression;
  * @author Rupture13
  */
 public class MainClass {
-
-    Facade huffmanCompressor;
+    static Facade huffmanCompressor;
+    static final String INPUT_TEXT = "huffman input text to be compressed";
+//    static final String INPUT_TEXT = "aaaaaaaaaa";
     
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        System.out.println("Test");
+        huffmanCompressor = new Facade();
+        HuffmanEncodedResult result;
+        
+        System.out.println("Input:");
+        System.out.println(INPUT_TEXT);
+        System.out.println("\nEncoded input:");
+        result = huffmanCompressor.compressData(INPUT_TEXT);
+        System.out.println(result.getEncodedData());
+        System.out.println("\nDecoded again:");
+        System.out.println(huffmanCompressor.decompressData(result));
     }
 }
