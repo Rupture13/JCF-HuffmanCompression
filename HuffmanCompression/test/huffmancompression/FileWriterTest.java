@@ -5,6 +5,7 @@
  */
 package huffmancompression;
 
+import java.io.File;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -14,8 +15,12 @@ import static org.junit.Assert.*;
  * @author Rupture13
  */
 public class FileWriterTest {
+    FileWriter fw;
+    HuffmanCompressor hc;
     
     public FileWriterTest() {
+        fw = new FileWriter();
+        hc = new HuffmanCompressor();
     }
     
     @BeforeClass
@@ -23,9 +28,20 @@ public class FileWriterTest {
     }
 
     @Test
-    public void testSomeMethod() {
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    public void saveTest() {
+        fw.setPath("exportTest");
+        HuffmanEncodedResult result = hc.compress("bbq"); //Should become 110 when encoded
+        fw.save(result);
+        
+        File f = new File(fw.getPath());
+        assertTrue(f.exists() && !f.isDirectory());
     }
     
+    @Test
+    public void loadTest() {
+        fw.setPath("exportTest");
+        fw.load();
+        
+        assertEquals("110", fw.getMessage());
+    }
 }

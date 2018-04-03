@@ -35,7 +35,7 @@ public class FileWriter {
     }
 
     public void setPath(String file) {
-        this.path = System.getProperty("user.dir") + File.separator + path;
+        this.path = System.getProperty("user.dir") + File.separator + file;
     }
 
     public Node getHuffmanTree() {
