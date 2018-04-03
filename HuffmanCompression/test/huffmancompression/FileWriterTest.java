@@ -6,7 +6,6 @@
 package huffmancompression;
 
 import java.io.File;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -21,10 +20,6 @@ public class FileWriterTest {
     public FileWriterTest() {
         fw = new FileWriter();
         hc = new HuffmanCompressor();
-    }
-    
-    @BeforeClass
-    public static void setUpClass() {
     }
 
     @Test

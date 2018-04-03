@@ -5,6 +5,9 @@
  */
 package huffmancompression;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author Rupture13
@@ -17,51 +20,29 @@ public class MainClass {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-//        testMethod1();
-        testMethod2();
+        testMethod1();
     }
     
     public static void testMethod1() {
         huffmanCompressor = new Facade();
         HuffmanEncodedResult result;
         
-        System.out.println("Input:");
-        System.out.println(INPUT_TEXT);
-        System.out.println("\nEncoded input:");
+        Logger.getLogger(FileWriter.class.getName()).log(Level.INFO, "Input:");
+        Logger.getLogger(FileWriter.class.getName()).log(Level.INFO, INPUT_TEXT);
+        Logger.getLogger(FileWriter.class.getName()).log(Level.INFO, "\nEncoded Input:");
         result = huffmanCompressor.compressData(INPUT_TEXT);
         
-        System.out.println("\nSaved:");
-        System.out.println(result.getEncodedData());
+        Logger.getLogger(FileWriter.class.getName()).log(Level.INFO, "Saved:");
+        Logger.getLogger(FileWriter.class.getName()).log(Level.INFO, result.getEncodedData());
         
         huffmanCompressor.save(result);
         
         huffmanCompressor.load();
         HuffmanEncodedResult loaded = new HuffmanEncodedResult(huffmanCompressor.getMessage(), huffmanCompressor.getHuffmanTree());
         
-        System.out.println("\nLoaded again:");
-        System.out.println(loaded.getEncodedData());
-        System.out.println("\nDecoded again:");
-        System.out.println(huffmanCompressor.decompressData(loaded));
-    }
-    
-    public static void testMethod2() {
-        huffmanCompressor = new Facade();
-        HuffmanEncodedResult result;
-        
-        System.out.println("\nEncoded input:");
-        result = huffmanCompressor.compressData(huffmanCompressor.readInputFromFile(true));
-        
-        System.out.println("\nSaved:");
-        System.out.println(result.getEncodedData());
-        
-        huffmanCompressor.save(result);
-        
-        huffmanCompressor.load();
-        HuffmanEncodedResult loaded = new HuffmanEncodedResult(huffmanCompressor.getMessage(), huffmanCompressor.getHuffmanTree());
-        
-        System.out.println("\nLoaded again:");
-        System.out.println(loaded.getEncodedData());
-        System.out.println("\nDecoded again:");
-        System.out.println(huffmanCompressor.decompressData(loaded));
+        Logger.getLogger(FileWriter.class.getName()).log(Level.INFO, "\nLoaded again:");
+        Logger.getLogger(FileWriter.class.getName()).log(Level.INFO, loaded.getEncodedData());
+        Logger.getLogger(FileWriter.class.getName()).log(Level.INFO, "\nDecoded again:");
+        Logger.getLogger(FileWriter.class.getName()).log(Level.INFO, huffmanCompressor.decompressData(loaded));
     }
 }

@@ -5,7 +5,6 @@
  */
 package huffmancompression;
 
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -18,10 +17,6 @@ public class PerformanceTest {
     
     public PerformanceTest() {
         f = new Facade();
-    }
-    
-    @BeforeClass
-    public static void setUpClass() {
     }
 
     @Test //Test with 10,000 words
@@ -40,19 +35,13 @@ public class PerformanceTest {
     
     private void executeEntireRoutine(String input) {
         HuffmanEncodedResult result;
-        
-        System.out.println("Encoded input");
-        result = f.compressData(f.readInputFromFile(true));
-        
-        System.out.println("Saved");
+        result = f.compressData(input);
         
         f.save(result);
         
         f.load();
         HuffmanEncodedResult loaded = new HuffmanEncodedResult(f.getMessage(), f.getHuffmanTree());
         
-        System.out.println("Loaded again");
-        System.out.println("Decoded again");
         f.decompressData(loaded);
     }
 }

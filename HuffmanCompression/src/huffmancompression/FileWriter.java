@@ -7,7 +7,6 @@ package huffmancompression;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -22,7 +21,6 @@ import java.util.logging.Logger;
  */
 public class FileWriter {
     private String path;
-    private BitSet bits;
     private Node tree;
     private String message;
 
@@ -50,7 +48,7 @@ public class FileWriter {
     
     public void load() {
         try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(path))) {
-            bits = (BitSet) ois.readObject();
+            BitSet bits = (BitSet) ois.readObject();
             tree = (Node) ois.readObject();
             
             int length = ois.readInt();
@@ -66,10 +64,8 @@ public class FileWriter {
             }
             
             message = sb.toString();
-            System.out.println("File successfully read");
+            Logger.getLogger(FileWriter.class.getName()).log(Level.INFO, "Success");
             
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(FileWriter.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException | ClassNotFoundException ex) {
             Logger.getLogger(FileWriter.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -96,11 +92,8 @@ public class FileWriter {
             oos.writeObject(b);
             oos.writeObject(her.getHuffmanTree());
             oos.writeInt(encoded.length());
-            oos.close();
-            System.out.println("File successfully saved");
+            Logger.getLogger(FileWriter.class.getName()).log(Level.INFO, "Success");
             
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(FileWriter.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
             Logger.getLogger(FileWriter.class.getName()).log(Level.SEVERE, null, ex);
         }

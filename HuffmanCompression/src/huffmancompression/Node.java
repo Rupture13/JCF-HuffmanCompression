@@ -6,6 +6,7 @@
 package huffmancompression;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 /**
  *
@@ -52,4 +53,33 @@ public class Node implements Comparable<Node>, Serializable {
         }
         return Integer.compare(this.c, other.c);
     }
+    
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (!(obj instanceof Node)) {
+            return false;
+        }
+        
+        Node node = (Node) obj;
+        
+        return node.c == c && 
+                node.frequency == frequency && 
+                node.leftChild == leftChild && 
+                node.rightChild == rightChild;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 37 * hash + this.c;
+        hash = 37 * hash + this.frequency;
+        hash = 37 * hash + Objects.hashCode(this.leftChild);
+        hash = 37 * hash + Objects.hashCode(this.rightChild);
+        return hash;
+    }
+    
+    
 }
